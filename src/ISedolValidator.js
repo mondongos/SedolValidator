@@ -34,5 +34,4 @@ class ISedolValidator {
 }
 
 module.exports = {ISedolValidator}
-// console.log("A".charCodeAt() - 55)
-// console.log("B".charCodeAt() - 55)
+
