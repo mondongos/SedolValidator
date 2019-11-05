@@ -7,6 +7,7 @@ class ISedolValidator {
             validationDetails: ""
         }
         this.weightingFactors = [1,3,1,7,3,9,1]
+        this.sedolTotal = 0
     }
     validate() {
         if(this.state.inputString === null || this.state.inputString === "" || this.state.inputString.length !== 7) {
@@ -14,21 +15,24 @@ class ISedolValidator {
             this.state.validationDetails = "Input string was not 7-characters long"
         } else {
             let sedolArr = this.state.inputString.split("")
-            let sedolTotal = 0
             sedolArr.forEach((item, indexNum) => {
                 if(isNaN(Number(item))) {
-                    sedolTotal += ((item.charCodeAt() - 55) * this.weightingFactors[indexNum])
+                    this.sedolTotal += ((item.charCodeAt() - 55) * this.weightingFactors[indexNum])
                 } else {
-                    sedolTotal += (Number(item) * this.weightingFactors[indexNum])
+                    this.sedolTotal += (Number(item) * this.weightingFactors[indexNum])
                 }
             })
-            if(((10 - (sedolTotal % 10)) % 10) === 0) {
-                this.state.isValidSedol = true
-                this.state.validationDetails = null
-            } else {
-                this.state.isValidSedol = false
-                this.state.validationDetails = "Checksum digit does not agree with the rest of the input"
-            }
+            this.checkTotal()
+        }
+    }
+
+    checkTotal() {
+        if(((10 - (this.sedolTotal % 10)) % 10) === 0) {
+            this.state.isValidSedol = true
+            this.state.validationDetails = null
+        } else {
+            this.state.isValidSedol = false
+            this.state.validationDetails = "Checksum digit does not agree with the rest of the input"
         }
     }
 }
