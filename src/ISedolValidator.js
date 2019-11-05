@@ -11,22 +11,30 @@ class ISedolValidator {
     }
     validate() {
         if(this.state.inputString === null || this.state.inputString === "" || this.state.inputString.length !== 7) {
-            this.state.isValidSedol = false
-            this.state.validationDetails = "Input string was not 7-characters long"
+            this.invalidLength()
         } else {
-            let sedolArr = this.state.inputString.split("")
-            sedolArr.forEach((item, indexNum) => {
-                if(isNaN(Number(item))) {
-                    this.sedolTotal += ((item.charCodeAt() - 55) * this.weightingFactors[indexNum])
-                } else {
-                    this.sedolTotal += (Number(item) * this.weightingFactors[indexNum])
-                }
-            })
-            this.checkTotal()
+            this.calculateCheckSum()
+            this.validateCheckSum()
         }
     }
 
-    checkTotal() {
+    invalidLength() {
+        this.state.isValidSedol = false
+        this.state.validationDetails = "Input string was not 7-characters long"
+    }
+
+    calculateCheckSum() {
+        let sedolArr = this.state.inputString.split("")
+        sedolArr.forEach((item, indexNum) => {
+            if(isNaN(Number(item))) {
+                this.sedolTotal += ((item.charCodeAt() - 55) * this.weightingFactors[indexNum])
+            } else {
+                this.sedolTotal += (Number(item) * this.weightingFactors[indexNum])
+            }
+        })
+    }
+
+    validateCheckSum() {
         if(((10 - (this.sedolTotal % 10)) % 10) === 0) {
             this.state.isValidSedol = true
             this.state.validationDetails = null
