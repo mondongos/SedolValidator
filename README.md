@@ -23,7 +23,7 @@ The check digit is chosen to make the total sum, including the check digit, a mu
 
 >(10 − (weighted sum modulo 10)) modulo 10.
 
-###Our Team Values
+### Our Team Values
 We value simple, functional and pragmatic solutions. 
 
 
