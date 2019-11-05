@@ -34,4 +34,3 @@ class ISedolValidator {
 }
 
 module.exports = {ISedolValidator}
-
