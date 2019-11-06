@@ -9,6 +9,7 @@ class ISedolValidator {
         this.weightingFactors = [1,3,1,7,3,9,1]
         this.sedolTotal = 0
     }
+    
     validate() {
         if(this.state.inputString === null || this.state.inputString === "" || this.state.inputString.length !== 7) {
             this.invalidLength()
