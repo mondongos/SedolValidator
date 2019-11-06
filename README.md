@@ -13,7 +13,7 @@ The process is as follows:
 I made a few assumptions: 
 - Assumed that all letters in the SEDOL codes provided simply consist of upper-cased letters and numbers only - I have not accounted for lower-case letters or symbols. 
 - `ISedolValidator.validate` must be run manually to make it work. I could have done this through the constructor upon initialisation of the class but I was unsure if this was needed. 
-- Since there is defined user, it remains false. 
+- Since there isn't a defined user, it remains false. 
 
 ### Technologies Used
 - JavaScript
