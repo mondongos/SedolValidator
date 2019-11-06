@@ -3,7 +3,7 @@ class ISedolValidator {
         this.state = {
             inputString: String(sedol), 
             isValidSedol: null, 
-            isUserDefined: null, 
+            isUserDefined: false, 
             validationDetails: ""
         }
         this.weightingFactors = [1,3,1,7,3,9,1]
